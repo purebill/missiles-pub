@@ -41,6 +41,28 @@
     }
     canvas {
       box-sizing: border-box;
+      z-index: -1;
+    }
+    code {
+      display: none;
+    }
+    .formContainer {
+      border: 10px solid #cccccc;
+      padding: 5px;
+      display: table-cell;
+      background-color: white;
+    }
+    .formContainer input[type=text], .formContainer textarea {
+      width: 400px;
+    }
+    .formContainer textarea {
+      height: 300px;
+    }
+    .formContainer div {
+      margin: 5px 0;
+    }
+    .formContainer label {
+
     }
   </style>
 </head>
@@ -50,6 +72,30 @@
   <div id="messageContainer">
     <div id="message"></div>
   </div>
+
+  <script type="text/plain" id="formTemplate">
+    <div class="formContainer">
+      {{:for field:fields}}
+        {{:if field.type = boolean}}
+          <div>
+            <label for="formField_{{field.name}}">{{field.name}}
+              <input id="formField_{{field.name}}" type="checkbox" {{:if field.changeable = false}}onclick="return false;"{{:end}}></label></div>
+        {{:end}}
+        {{:if field.type = textarea}}
+          <div>
+            <label for="formField_{{field.name}}">{{field.name}}
+              <textarea id="formField_{{field.name}}" {{:if field.changeable = false}}readonly{{:end}}></textarea></label></div>
+        {{:end}}
+        {{:if field.type = text}}
+          <div>
+            <label for="formField_{{field.name}}">{{field.name}}
+              <input id="formField_{{field.name}}" type="text" {{:if field.changeable = false}}readonly{{:end}}></label></div>
+        {{:end}}
+      {{:end}}
+      <button id="{{ok}}" class="ok">OK</button>
+      <button id="{{cancel}}" class="cancel">Cancel</button>
+    </div>
+  </script>
 
   <canvas id="canvas"></canvas>
 
