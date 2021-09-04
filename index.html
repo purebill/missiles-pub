@@ -61,6 +61,9 @@
     .formContainer textarea {
       height: 300px;
     }
+    .formContainer input[readonly], .formContainer textarea[readonly] {
+      color: #999999;
+    }
     .formContainer div {
       margin: 5px 0;
     }
@@ -128,7 +131,7 @@
         {{:if field.type = boolean}}
           <div>
             <label for="formField_{{field.name}}">{{field.name}}
-              <input id="formField_{{field.name}}" type="checkbox" {{:if field.changeable = false}}onclick="return false;"{{:end}}></label></div>
+              <input id="formField_{{field.name}}" type="checkbox" {{:if field.changeable = false}}readonly onclick="return false;"{{:end}}></label></div>
         {{:end}}
         {{:if field.type = textarea}}
           <div>
