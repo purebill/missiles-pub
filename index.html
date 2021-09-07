@@ -59,6 +59,7 @@
       width: 400px;
     }
     .formContainer textarea {
+      width: 400px;
       height: 300px;
     }
     .formContainer input[readonly], .formContainer textarea[readonly] {
@@ -69,6 +70,9 @@
     }
     .formContainer label {
 
+    }
+    .formContainer .js label, .formContainer .textarea label, .formContainer .js label, .formContainer .text label {
+      display: block;
     }
 
     .modal {
@@ -129,24 +133,24 @@
     <div class="formContainer">
       {{:for field:fields}}
         {{:if field.type = boolean}}
-          <div>
-            <label for="formField_{{field.name}}">{{field.name}}
-              <input id="formField_{{field.name}}" type="checkbox" {{:if field.changeable = false}}readonly onclick="return false;"{{:end}}></label></div>
+          <div class="boolean">
+            <label for="formField_{{field.name}}">
+              <input id="formField_{{field.name}}" type="checkbox" {{:if field.changeable = false}}readonly onclick="return false;"{{:end}}> {{field.name}}</label></div>
         {{:end}}
         {{:if field.type = textarea}}
-          <div>
-            <label for="formField_{{field.name}}">{{field.name}}
-              <textarea id="formField_{{field.name}}" {{:if field.changeable = false}}readonly{{:end}}></textarea></label></div>
+          <div class="textarea">
+            <label for="formField_{{field.name}}">{{field.name}}</label>
+            <textarea id="formField_{{field.name}}" wrap="true" {{:if field.changeable = false}}readonly{{:end}}></textarea></div>
         {{:end}}
         {{:if field.type = js}}
-          <div>
-            <label for="formField_{{field.name}}">{{field.name}}
-              <textarea id="formField_{{field.name}}" {{:if field.changeable = false}}readonly{{:end}}></textarea></label></div>
+          <div class="js">
+            <label for="formField_{{field.name}}">{{field.name}}</label>
+            <textarea id="formField_{{field.name}}" wrap="true" {{:if field.changeable = false}}readonly{{:end}}></textarea></div>
         {{:end}}
         {{:if field.type = text}}
-          <div>
-            <label for="formField_{{field.name}}">{{field.name}}
-              <input id="formField_{{field.name}}" type="text" {{:if field.changeable = false}}readonly{{:end}}></label></div>
+          <div class="text">
+            <label for="formField_{{field.name}}">{{field.name}}</label>
+            <input id="formField_{{field.name}}" type="text" {{:if field.changeable = false}}readonly{{:end}}></div>
         {{:end}}
       {{:end}}
       <button id="{{ok}}" class="ok">OK</button>
