@@ -132,25 +132,34 @@
   <script type="text/plain" id="formTemplate">
     <div class="formContainer">
       {{:for field:fields}}
-        {{:if field.type = boolean}}
+        {{:if field.type = "boolean"}}
           <div class="boolean">
             <label for="formField_{{field.name}}">
-              <input id="formField_{{field.name}}" type="checkbox" {{:if field.changeable = false}}readonly onclick="return false;"{{:end}}> {{field.name}}</label></div>
+              <input id="formField_{{field.name}}" type="checkbox" {{:if field.changeable = "false"}}readonly onclick="return false;"{{:end}}> {{field.name}}</label></div>
         {{:end}}
-        {{:if field.type = textarea}}
+        {{:if field.type = "textarea"}}
           <div class="textarea">
             <label for="formField_{{field.name}}">{{field.name}}</label>
-            <textarea id="formField_{{field.name}}" wrap="true" {{:if field.changeable = false}}readonly{{:end}}></textarea></div>
+            <textarea id="formField_{{field.name}}" wrap="true" {{:if field.changeable = "false"}}readonly{{:end}}></textarea></div>
         {{:end}}
-        {{:if field.type = js}}
+        {{:if field.type = "js"}}
           <div class="js">
             <label for="formField_{{field.name}}">{{field.name}}</label>
-            <textarea id="formField_{{field.name}}" wrap="true" {{:if field.changeable = false}}readonly{{:end}}></textarea></div>
+            <textarea id="formField_{{field.name}}" wrap="true" {{:if field.changeable = "false"}}readonly{{:end}}></textarea></div>
         {{:end}}
-        {{:if field.type = text}}
+        {{:if field.type = "text"}}
           <div class="text">
             <label for="formField_{{field.name}}">{{field.name}}</label>
-            <input id="formField_{{field.name}}" type="text" {{:if field.changeable = false}}readonly{{:end}}></div>
+            <input id="formField_{{field.name}}" type="text" {{:if field.changeable = "false"}}readonly{{:end}}></div>
+        {{:end}}
+        {{:if field.type = "drop-down"}}
+          <div class="drop-down">
+            <label for="formField_{{field.name}}">{{field.name}}</label>
+            <select id="formField_{{field.name}}" {{:if field.changeable = "false"}}readonly{{:end}}>
+                {{:for item:field.items}}
+                    <option value="{{item.value}}" {{:if item.value = item.name}}selected{{:end}}>{{item.value}}</option>
+                {{:end}}
+            </select></div>
         {{:end}}
       {{:end}}
       <button id="{{ok}}" class="ok">OK</button>
